@@ -1,0 +1,99 @@
+@import 'core/reset';
+@import 'layout/landing';
+
+.page {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  background-color: rgb(255, 253, 121);
+}
+
+.tablero-container {
+  width: 80%;
+  margin: 30px auto 20px; 
+}
+
+.piezas-desordanadas-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.tablero.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(50px, 1fr));
+  grid-template-rows: repeat(3, minmax(50px, 1fr));
+  gap: 2px;
+  margin: 20px auto;
+}
+
+.tablero.grid div {
+  border: 1px solid #376442; 
+  border-radius: 5px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tablero.grid img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.piezas-desordanadas-container {
+  display: flex;
+  justify-content: center;
+}
+
+.piezas-desordanadas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  margin: 5px 20px; 
+}
+
+.piezas-desordanadas img {
+  object-fit: contain;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+
+@media (min-width: 1200px) {
+  .page {
+    flex-direction: row;
+  }
+}
+
+/*
+.page {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+
+  @media (width >= 1200px) {
+    flex-direction: row;
+  }
+}
+
+.tablero.grid {
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+  grid-template-rows: 200px 200px 200px;
+
+  div {
+    outline: solid 1px black;
+  }
+
+  img {
+    object-fit: contain;
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.piezas-desordanadas {
+  img:active, img.active {
+    outline: solid 1px cyan;
+  }
+}*/
