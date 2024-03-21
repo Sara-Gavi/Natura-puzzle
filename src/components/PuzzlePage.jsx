@@ -56,11 +56,21 @@ function PuzzlePage() {
   const handleClickCasilla = (event) => {
     const posicionCasillaEnElTablero = event.currentTarget.id; // Obtiene la posición de la casilla en el tablero
 
-    const tableroClonado = [...tablero]; // Clona el tablero actual para poder modificarlo
-    tableroClonado[posicionCasillaEnElTablero] = piezaSelec; // Asigna la pieza seleccionada a la posición de la casilla en el tablero clonado
+    if (tablero[posicionCasillaEnElTablero] === null) {
+      // Si la casilla está vacía, colocamos la pieza seleccionada en ella
+      const tableroClonado = [...tablero]; // Clona el tablero actual para poder modificarlo
+      tableroClonado[posicionCasillaEnElTablero] = piezaSelec; // Asigna la pieza seleccionada a la posición de la casilla en el tablero clonado
 
-    setTablero(tableroClonado); // Actualiza el estado del tablero con el tablero clonado
-    setPiezaSelec(""); // Deselecciona la pieza seleccionada después de colocarla en el tablero
+      setTablero(tableroClonado); // Actualiza el estado del tablero con el tablero clonado
+      setPiezaSelec(""); // Deselecciona la pieza seleccionada después de colocarla en el tablero
+    } else {
+      // Si la casilla ya contiene una pieza, la deseleccionamos
+      const tableroClonado = [...tablero]; // Clona el tablero actual para poder modificarlo
+      tableroClonado[posicionCasillaEnElTablero] = ""; // Asigna una cadena vacía para deseleccionar la casilla
+
+      setTablero(tableroClonado); // Actualiza el estado del tablero con el tablero clonado
+      setPiezaSelec(""); // Deselecciona la pieza seleccionada
+    }
   };
 
   return (
