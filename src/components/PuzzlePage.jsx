@@ -54,10 +54,17 @@ function PuzzlePage() {
   };
 
   const handleClickCasilla = (event) => {
+    console.log("¡llamamos a la funcion!");
+    console.log("Valor actual de piezaSelec:", piezaSelec); // Verificar el valor actual de piezaSelec
+    console.log(
+      "Valor de tablero[posicionCasillaEnElTablero]:",
+      tablero[event.currentTarget.id]
+    );
     const posicionCasillaEnElTablero = event.currentTarget.id; // Obtiene la posición de la casilla en el tablero
 
     // Verifica si la casilla está vacía
     if (tablero[posicionCasillaEnElTablero] === null) {
+      console.log("Me paso por el if y veo si esta vacía la casilla");
       // Coloca la pieza seleccionada en la casilla vacía
       const tableroClonado = [...tablero]; // Clona el tablero actual
       tableroClonado[posicionCasillaEnElTablero] = piezaSelec; // Asigna la pieza seleccionada a la posición de la casilla en el tablero clonado
@@ -66,6 +73,7 @@ function PuzzlePage() {
       setTablero(tableroClonado);
       setPiezaSelec("");
     } else {
+      console.log("Me paso por el else y veo si funciona");
       // Si la casilla ya contiene una pieza, la deseleccionamos
       const tableroClonado = [...tablero]; // Clona el tablero actual
       tableroClonado[posicionCasillaEnElTablero] = null; // Asigna null para deseleccionar la casilla
@@ -79,26 +87,34 @@ function PuzzlePage() {
     <div className="page">
       <div className="tablero-container">
         <div className="tablero grid">
-          {tablero.map((casilla, idx) =>
-            casilla === null ? (
-              <div key={idx} id={idx} onClick={handleClickCasilla}></div>
-            ) : (
-              <img key={idx} src={casilla} />
-            )
+          {tablero.map(
+            (casilla, idx) =>
+              console.log("Estado de la casilla", idx, ":", casilla) ||
+              (casilla === null ? (
+                <div key={idx} id={idx} onClick={handleClickCasilla}></div>
+              ) : (
+                <img key={idx} src={casilla} />
+              ))
           )}
         </div>
       </div>
       <div className="piezas-desordanadas-container">
         <div className="piezas-desordanadas">
-          {imagenes.map((pieza) => (
-            <img
-              key={pieza}
-              className={piezaSelec.endsWith(pieza) ? "active" : ""}
-              src={pieza}
-              alt=""
-              onClick={handleClickPieza}
-            />
-          ))}
+          {imagenes.map((pieza) => {
+            console.log(
+              "¿Pieza seleccionada igual a pieza?",
+              piezaSelec === pieza
+            );
+            return (
+              <img
+                key={pieza}
+                className={piezaSelec === pieza ? "active" : ""}
+                src={pieza}
+                alt=""
+                onClick={handleClickPieza}
+              />
+            );
+          })}
         </div>
       </div>
     </div>
