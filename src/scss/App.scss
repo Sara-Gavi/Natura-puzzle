@@ -5,9 +5,12 @@
   display: flex;
   gap: 20px;
   flex-direction: column;
-  background-color: rgb(255, 253, 121);
+  background-color: rgb(156, 255, 123);
 }
 
+.tablero {
+  background-color: #f5ff6f; 
+}
 .tablero-container {
   width: 80%;
   margin: 30px auto 20px; 
@@ -27,7 +30,7 @@
 }
 
 .tablero.grid div {
-  border: 1px solid #376442; 
+  border: 2px solid #376442; 
   border-radius: 5px; 
   display: flex;
   align-items: center;
@@ -59,10 +62,29 @@
   cursor: pointer;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 768px) { 
+  .tablero.grid {
+    grid-template-columns: repeat(3, minmax(70px, 1fr));
+    grid-template-rows: repeat(3, minmax(70px, 1fr));
+  }
+  .page {
+    height: 100vh;
+  }
+}
+
+@media (min-width: 1024px) {
   .page {
     flex-direction: row;
+    height: 100vh;
+    padding: 40px 50px;
   }
+  .tablero.grid {
+   
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    grid-template-rows: repeat(3, minmax(100px, 1fr));
+  
+  }
+
 }
 
 /*
