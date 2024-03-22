@@ -1,11 +1,38 @@
 @import 'core/reset';
 @import 'layout/landing';
 
+
+
+
 .page {
   display: flex;
   gap: 20px;
   flex-direction: column;
   background-color: rgb(156, 255, 123);
+  height: 100vh;
+}
+
+.header {
+  background-color: #20aa43; 
+  height: 30%; 
+  display: flex;
+  padding-left: 30px; 
+}
+
+.logo__header{
+  width: 40px;
+  border-radius: 50%;
+}
+
+.frase__header{
+
+    color:white;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    margin-left: 15px;
+    font-family: "Odor Mean Chey", serif;
+    font-size: 10px;
 }
 
 .tablero {
@@ -19,6 +46,8 @@
 .piezas-desordanadas-container {
   width: 80%;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }
 
 .tablero.grid {
@@ -30,7 +59,7 @@
 }
 
 .tablero.grid div {
-  border: 2px solid #376442; 
+  border: 2px solid #22813a; 
   border-radius: 5px; 
   display: flex;
   align-items: center;
@@ -42,27 +71,30 @@
   max-height: 100%;
 }
 
-.piezas-desordanadas-container {
-  display: flex;
-  justify-content: center;
-}
 
 .piezas-desordanadas {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 5px;
+  gap: 15px;
   margin: 5px 20px; 
 }
 
 .piezas-desordanadas img {
   object-fit: contain;
-  width: 100px;
-  height: 100px;
+  height: 40px;
   cursor: pointer;
 }
 
 @media (min-width: 768px) { 
+
+  .logo__header{
+    width: 65px;
+  }
+  
+  .frase__header{
+  font-size: 15px;
+}
   .tablero.grid {
     grid-template-columns: repeat(3, minmax(70px, 1fr));
     grid-template-rows: repeat(3, minmax(70px, 1fr));
@@ -70,9 +102,22 @@
   .page {
     height: 100vh;
   }
+
+  .piezas-desordanadas img {
+    height: 80px;
+  }
+  
+.piezas-desordanadas {
+ gap:20px;}
+
+
 }
 
 @media (min-width: 1024px) {
+
+  .logo__header{
+    width: 70px;
+  }
   .page {
     flex-direction: row;
     height: 100vh;
@@ -84,6 +129,20 @@
     grid-template-rows: repeat(3, minmax(100px, 1fr));
   
   }
+  .piezas-desordanadas img {
+    height: 100px;
+  }
+
+  .piezas-desordanadas {
+    gap:20px;
+   }
+   .tablero-container{
+    margin: 0 auto;
+   }
+
+   .frase__header{
+    font-size: 15px;
+}
 
 }
 

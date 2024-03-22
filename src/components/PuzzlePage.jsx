@@ -8,6 +8,8 @@ import imagen5 from "../images/05.jpg";
 import imagen6 from "../images/06.jpg";
 import imagen7 from "../images/07.jpg";
 import imagen8 from "../images/08.jpg";
+import { Link } from "react-router-dom";
+import NaturaLogo from "../images/NATURA.png";
 
 function PuzzlePage() {
   const [tablero, setTablero] = useState([
@@ -84,37 +86,50 @@ function PuzzlePage() {
   };
 
   return (
-    <div className="page">
-      <div className="tablero-container">
-        <div className="tablero grid">
-          {tablero.map(
-            (casilla, idx) =>
-              console.log("Estado de la casilla", idx, ":", casilla) ||
-              (casilla === null ? (
-                <div key={idx} id={idx} onClick={handleClickCasilla}></div>
-              ) : (
-                <img key={idx} src={casilla} />
-              ))
-          )}
+    <div className="puzzle__page">
+      <header className="header">
+        <div className="logo__header">
+          <Link to="/">
+            {" "}
+            <img className="logo__header" src={NaturaLogo} alt="NaturaLogo" />
+          </Link>
         </div>
-      </div>
-      <div className="piezas-desordanadas-container">
-        <div className="piezas-desordanadas">
-          {imagenes.map((pieza) => {
-            console.log(
-              "¿Pieza seleccionada igual a pieza?",
-              piezaSelec === pieza
-            );
-            return (
-              <img
-                key={pieza}
-                className={piezaSelec === pieza ? "active" : ""}
-                src={pieza}
-                alt=""
-                onClick={handleClickPieza}
-              />
-            );
-          })}
+        <div className="frase__header">
+          <p>Construye un mundo sostenible pieza a pieza</p>
+        </div>
+      </header>
+      <div className="page">
+        <div className="tablero-container">
+          <div className="tablero grid">
+            {tablero.map(
+              (casilla, idx) =>
+                console.log("Estado de la casilla", idx, ":", casilla) ||
+                (casilla === null ? (
+                  <div key={idx} id={idx} onClick={handleClickCasilla}></div>
+                ) : (
+                  <img key={idx} src={casilla} />
+                ))
+            )}
+          </div>
+        </div>
+        <div className="piezas-desordanadas-container">
+          <div className="piezas-desordanadas">
+            {imagenes.map((pieza) => {
+              console.log(
+                "¿Pieza seleccionada igual a pieza?",
+                piezaSelec === pieza
+              );
+              return (
+                <img
+                  key={pieza}
+                  className={piezaSelec === pieza ? "active" : ""}
+                  src={pieza}
+                  alt=""
+                  onClick={handleClickPieza}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
