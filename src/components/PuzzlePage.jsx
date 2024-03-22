@@ -11,8 +11,7 @@ import imagen8 from "../images/08.jpg";
 
 function PuzzlePage() {
   const [tablero, setTablero] = useState([
-    // Se define el estado tablero y una función para actualizarlo
-    null, //Iniciamos cada casilla del tablero como nula
+    null,
     null,
     null,
     null,
@@ -24,8 +23,7 @@ function PuzzlePage() {
   ]);
 
   const [imagenes, setImagenes] = useState([
-    // Define el estado imagenes y una función para actualizarlo
-    imagen0, // Iniciamos la lista de imágenes de las piezas del puzzle
+    imagen0,
     imagen1,
     imagen2,
     imagen3,
@@ -36,55 +34,59 @@ function PuzzlePage() {
     imagen8,
   ]);
 
-  const [piezaSelec, setPiezaSelec] = useState(""); // Define el estado piezaSelec y una función para actualizarlo
+  const [piezaSelec, setPiezaSelec] = useState("");
+  const [piezaSelecIdx, setPiezaSelecIdx] = useState(null); // Nuevo estado para almacenar el índice de la pieza seleccionada en el tablero
 
-  /*const handleClickPieza = (event) => {
-    setPiezaSelec(event.currentTarget.src);
-  };*/
-
-  const handleClickPieza = (event) => {
-    const piezaSeleccionada = event.currentTarget.src; // Obtiene la URL de la imagen de la pieza seleccionada
-
-    // Verificar si la pieza seleccionada es la misma que la actualmente seleccionada
-    if (piezaSeleccionada === piezaSelec) {
-      setPiezaSelec(""); // Si es la misma, deselecciona la pieza
+  const handleClickPieza = (pieza, idx) => {
+    if (pieza === tablero[idx]) { // Si la pieza clicada es la que ya está seleccionada en el tablero
+      setPiezaSelec(""); // Deseleccionar la pieza del tablero
+      setTablero(tablero.map((pieza, i) => (i === idx ? null : pieza))); // Vaciar la casilla del tablero
+      setPiezaSelecIdx(null); // Restablecer el índice de la pieza seleccionada en el tablero
     } else {
-      setPiezaSelec(piezaSeleccionada); // Si no es la misma, establece la nueva pieza seleccionada
+      setPiezaSelec(pieza);
+      setPiezaSelecIdx(idx);
     }
   };
 
-  const handleClickCasilla = (event) => {
-    const posicionCasillaEnElTablero = event.currentTarget.id; // Obtiene la posición de la casilla en el tablero
-
-    const tableroClonado = [...tablero]; // Clona el tablero actual para poder modificarlo
-    tableroClonado[posicionCasillaEnElTablero] = piezaSelec; // Asigna la pieza seleccionada a la posición de la casilla en el tablero clonado
-
-    setTablero(tableroClonado); // Actualiza el estado del tablero con el tablero clonado
-    setPiezaSelec(""); // Deselecciona la pieza seleccionada después de colocarla en el tablero
+  const handleClickCasilla = (idx) => {
+    if (tablero[idx]) { // Si la casilla ya contiene una pieza
+      setPiezaSelec(tablero[idx]); // Seleccionar la pieza del tablero
+      setTablero(tablero.map((pieza, i) => (i === idx ? null : pieza))); // Vaciar la casilla del tablero
+      setPiezaSelecIdx(idx); // Actualizar el índice de la pieza seleccionada en el tablero
+    } else {
+      const newTablero = [...tablero];
+      newTablero[idx] = piezaSelec;
+      setTablero(newTablero);
+      setPiezaSelec("");
+      setPiezaSelecIdx(null); // Restablecer el índice de la pieza seleccionada en el tablero
+    }
   };
 
   return (
     <div className="page">
       <div className="tablero-container">
         <div className="tablero grid">
-          {tablero.map((casilla, idx) =>
-            casilla === null ? (
-              <div key={idx} id={idx} onClick={handleClickCasilla}></div>
-            ) : (
-              <img key={idx} src={casilla} />
-            )
-          )}
+          {tablero.map((casilla, idx) => (
+            <div
+              key={idx}
+              id={idx}
+              onClick={() => handleClickCasilla(idx)}
+              className={piezaSelecIdx === idx ? "selected" : ""} // Resaltar visualmente la casilla seleccionada en el tablero
+            >
+              {casilla && <img src={casilla} />}
+            </div>
+          ))}
         </div>
       </div>
       <div className="piezas-desordanadas-container">
         <div className="piezas-desordanadas">
-          {imagenes.map((pieza) => (
+          {imagenes.map((pieza, idx) => (
             <img
               key={pieza}
-              className={piezaSelec.endsWith(pieza) && "active"}
+              className={piezaSelec === pieza ? "active" : ""}
               src={pieza}
               alt=""
-              onClick={handleClickPieza}
+              onClick={() => handleClickPieza(pieza, idx)}
             />
           ))}
         </div>
