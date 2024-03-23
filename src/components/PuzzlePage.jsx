@@ -107,7 +107,11 @@ function PuzzlePage() {
         </div>
       </header>
       <div className="page">
-        {checkCompleted() && <p>Compoleto!</p>}
+        {checkCompleted() && (
+          <div className="mensaje">
+            <p>¡Completo!</p>
+          </div>
+        )}
         <div className="tablero-container">
           <div className="tablero grid">
             {tablero.map(
