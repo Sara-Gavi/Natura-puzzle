@@ -107,7 +107,12 @@ function PuzzlePage() {
                 (casilla === null ? (
                   <div key={idx} id={idx} onClick={handleClickCasilla}></div>
                 ) : (
-                  <img key={idx} src={casilla} />
+                  <img
+                    key={idx}
+                    src={casilla}
+                    id={idx}
+                    onClick={handleClickCasilla}
+                  />
                 ))
             )}
           </div>
