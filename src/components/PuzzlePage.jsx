@@ -11,6 +11,10 @@ import imagen6 from "../images/06.jpg";
 import imagen7 from "../images/07.jpg";
 import imagen8 from "../images/08.jpg";
 
+//const order = [4, 7, 1, 0, 2, 6, 8, 3, 5];
+
+const order = [0, 1, 2, 3, 4, 5, 6, 7, 8].sort(() => Math.random() * 2 - 1);
+console.log(order);
 function PuzzlePage() {
   //Inicializamos los estados necesarios para el tablero, las imágenes de las piezas y las piezas seleccionadas
   const [tablero, setTablero] = useState([
@@ -27,13 +31,13 @@ function PuzzlePage() {
 
   const [imagenes, setImagenes] = useState([
     imagen0,
-    imagen1,
-    imagen2,
     imagen3,
-    imagen4,
-    imagen5,
     imagen6,
+    imagen1,
+    imagen4,
     imagen7,
+    imagen2,
+    imagen5,
     imagen8,
   ]);
 
@@ -82,9 +86,14 @@ function PuzzlePage() {
     }
   };
 
+  const checkCompleted = () => {
+    return JSON.stringify(tablero) === JSON.stringify(imagenes);
+  };
+
   //Renderizamos el componente con su estructura HTML y elementos necesarios para el Puzzle
   return (
     <div className="page">
+      {checkCompleted() && <p>Compoleto!</p>}
       <div className="tablero-container">
         <div className="tablero grid">
           {tablero.map(
@@ -112,6 +121,7 @@ function PuzzlePage() {
               idx //Renderizamos de piezas desordenadas y como se comportarán cuando la usuaria haga clic en ellas
             ) => (
               <img
+                style={{ order: order[idx] }}
                 key={pieza}
                 className={piezaSelec === pieza ? "active" : ""}
                 src={pieza}
