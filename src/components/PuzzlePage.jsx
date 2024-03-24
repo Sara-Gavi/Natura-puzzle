@@ -45,6 +45,7 @@ function PuzzlePage() {
 
   const [piezaSelec, setPiezaSelec] = useState("");
   const [piezaSelecIdx, setPiezaSelecIdx] = useState(null); // Nuevo estado para almacenar el índice de la pieza seleccionada en el tablero
+  const [mostrarPuzzle, setMostrarPuzzle] = useState(false);
 
   //Funciones manejadoras de eventos
 
@@ -92,67 +93,97 @@ function PuzzlePage() {
     return JSON.stringify(tablero) === JSON.stringify(imagenes);
   };
 
+  const handleStartGame = () => {
+    setMostrarPuzzle(true);
+  };
+
   //Renderizamos el componente con su estructura HTML y elementos necesarios para el Puzzle
   return (
-    <div className="puzzle__page">
-      <header className="header">
-        <div className="logo__header">
-          <Link to="/">
-            {" "}
-            <img className="logo__header" src={NaturaLogo} alt="NaturaLogo" />
-          </Link>
-        </div>
-        <div className="frase__header">
-          <p>Construye un mundo sostenible pieza a pieza</p>
-        </div>
-      </header>
-      <div className="page">
-        {checkCompleted() && (
-          <div className="mensaje">
-            <p>¡Completo!</p>
-          </div>
-        )}
-        <div className="tablero-container">
-          <div className="tablero grid">
-            {tablero.map(
-              (
-                casilla,
-                idx // renderizamos las casillas tablero y como se comportaran cuando la usuaria haga clic
-              ) => (
-                <div
-                  key={idx}
-                  id={idx}
-                  onClick={() => handleClickCasilla(idx)}
-                  className={piezaSelecIdx === idx ? "selected" : ""} // Resaltar visualmente la casilla seleccionada en el tablero
-                >
-                  {casilla && <img src={casilla} />}
-                </div>
-              )
-            )}
+    <div>
+      {!mostrarPuzzle ? (
+        <div className="mensaje">
+          <div className="mensaje__texto">
+            <h2 className="mensaje__h2">
+              ¡Descubre el mundo natural mientras haces un puzzle!
+            </h2>
+            <p className="mensaje__p">
+              ¡Coloca cada pieza en su sitio y descubriras un mensaje secreto
+              sobre la naturaleza y por qué es importante cuidarla!
+            </p>
+            <button onClick={handleStartGame}>Empezar</button>
           </div>
         </div>
-        <div className="piezas-desordanadas-container">
-          <div className="piezas-desordanadas">
-            {imagenes.map(
-              (
-                pieza,
-                idx //Renderizamos de piezas desordenadas y como se comportarán cuando la usuaria haga clic en ellas
-              ) => (
+      ) : (
+        <div className="puzzle__page">
+          <header className="header">
+            <div className="logo__header">
+              <Link to="/">
+                {" "}
                 <img
-                  style={{ order: order[idx] }}
-                  key={pieza}
-                  className={piezaSelec === pieza ? "active" : ""}
-                  src={pieza}
-                  alt=""
-                  onClick={() => handleClickPieza(pieza, idx)}
+                  className="logo__header"
+                  src={NaturaLogo}
+                  alt="NaturaLogo"
                 />
-              )
+              </Link>
+            </div>
+            <div className="frase__header">
+              <p>Construye un mundo sostenible pieza a pieza</p>
+            </div>
+          </header>
+          <div className="page">
+            {checkCompleted() && (
+              <div className="mensaje">
+                <div className="mensaje__texto">
+                  <h2 className="mensaje__h2">
+                    ¿Sabías por qué cambian los colores de los árboles?
+                  </h2>
+                  <p className="mensaje__p">
+                    Durante el verano, las hojas están llenas de un pigmento
+                    verde llamado clorofila que les da su color verde. Pero
+                    cuando llega el otoño y empieza a hacer más frío, las hojas
+                    comienzan a cambiar de color. Esto sucede porque la
+                    clorofila, que necesita mucha luz y calor, desaparece y
+                    revela otros colores que estaban escondidos todo el tiempo,
+                    como amarillos, naranjas, rojos. Por eso es importante
+                    proteger los bosques y cuidarlos, para que siempre podamos
+                    disfrutar de sus colores.
+                  </p>
+                </div>
+              </div>
             )}
+            <div className="tablero-container">
+              <div className="tablero grid">
+                {tablero.map((casilla, idx) => (
+                  <div
+                    key={idx}
+                    id={idx}
+                    onClick={() => handleClickCasilla(idx)}
+                    className={piezaSelecIdx === idx ? "selected" : ""}
+                  >
+                    {casilla && <img src={casilla} alt="" />}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="piezas-desordanadas-container">
+              <div className="piezas-desordanadas">
+                {imagenes.map((pieza, idx) => (
+                  <img
+                    style={{ order: order[idx] }}
+                    key={pieza}
+                    className={piezaSelec === pieza ? "active" : ""}
+                    src={pieza}
+                    alt=""
+                    onClick={() => handleClickPieza(pieza, idx)}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
 
-export default PuzzlePage; //Exportamos el componente para poder usarlo en otras partes de la aplización
+export default PuzzlePage;
