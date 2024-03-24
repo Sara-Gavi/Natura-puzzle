@@ -45,7 +45,7 @@ function PuzzlePage() {
 
   const [piezaSelec, setPiezaSelec] = useState("");
   const [piezaSelecIdx, setPiezaSelecIdx] = useState(null); // Nuevo estado para almacenar el índice de la pieza seleccionada en el tablero
-  const [mostrarPuzzle, setMostrarPuzzle] = useState(false);
+  const [mensajeVisible, setMensajeVisible] = useState(true); // Definir estado mensajeVisible
 
   //Funciones manejadoras de eventos
 
@@ -94,96 +94,97 @@ function PuzzlePage() {
   };
 
   const handleStartGame = () => {
-    setMostrarPuzzle(true);
+    setMensajeVisible(false);
   };
 
   //Renderizamos el componente con su estructura HTML y elementos necesarios para el Puzzle
   return (
-    <div>
-      {!mostrarPuzzle ? (
+    <div className="puzzle__page">
+      {mensajeVisible && (
         <div className="mensaje">
           <div className="mensaje__texto">
             <h2 className="mensaje__h2">
               ¡Descubre el mundo natural mientras haces un puzzle!
             </h2>
             <p className="mensaje__p">
-              ¡Coloca cada pieza en su sitio y descubriras un mensaje secreto
+              ¡Coloca cada pieza en su sitio y descubrirás un mensaje secreto
               sobre la naturaleza y por qué es importante cuidarla!
             </p>
-            <button onClick={handleStartGame}>Empezar</button>
+            <div className="mensaje__button">
+              <a className="button__text" onClick={handleStartGame}>
+                ¡A Jugar!
+              </a>
+            </div>
           </div>
         </div>
-      ) : (
-        <div className="puzzle__page">
-          <header className="header">
-            <div className="logo__header">
+      )}
+      <header className="header">
+        <div className="logo__header">
+          <Link to="/">
+            <img className="logo__header" src={NaturaLogo} alt="NaturaLogo" />
+          </Link>
+        </div>
+        <div className="frase__header">
+          <p>Construye un mundo sostenible pieza a pieza</p>
+        </div>
+      </header>
+      <div className="page">
+        {checkCompleted() && (
+          <div className="mensaje">
+            <div className="mensaje__texto">
+              <h2 className="mensaje__h2">
+                ¿Sabías por qué cambian los colores de los árboles?
+              </h2>
+              <p className="mensaje__p">
+                Durante el verano, las hojas están llenas de un pigmento verde
+                llamado clorofila que les da su color verde. Pero cuando llega
+                el otoño y empieza a hacer más frío, las hojas comienzan a
+                cambiar de color. Esto sucede porque la clorofila, que necesita
+                mucha luz y calor, desaparece y revela otros colores que estaban
+                escondidos todo el tiempo, como amarillos, naranjas, rojos. Por
+                eso es importante proteger los bosques y cuidarlos, para que
+                siempre podamos disfrutar de sus colores.
+              </p>
               <Link to="/">
-                {" "}
                 <img
-                  className="logo__header"
+                  className="logo__message"
                   src={NaturaLogo}
                   alt="NaturaLogo"
                 />
               </Link>
             </div>
-            <div className="frase__header">
-              <p>Construye un mundo sostenible pieza a pieza</p>
-            </div>
-          </header>
-          <div className="page">
-            {checkCompleted() && (
-              <div className="mensaje">
-                <div className="mensaje__texto">
-                  <h2 className="mensaje__h2">
-                    ¿Sabías por qué cambian los colores de los árboles?
-                  </h2>
-                  <p className="mensaje__p">
-                    Durante el verano, las hojas están llenas de un pigmento
-                    verde llamado clorofila que les da su color verde. Pero
-                    cuando llega el otoño y empieza a hacer más frío, las hojas
-                    comienzan a cambiar de color. Esto sucede porque la
-                    clorofila, que necesita mucha luz y calor, desaparece y
-                    revela otros colores que estaban escondidos todo el tiempo,
-                    como amarillos, naranjas, rojos. Por eso es importante
-                    proteger los bosques y cuidarlos, para que siempre podamos
-                    disfrutar de sus colores.
-                  </p>
-                </div>
+          </div>
+        )}
+        <div className="tablero-container">
+          <div className="tablero grid">
+            {tablero.map((casilla, idx) => (
+              <div
+                key={idx}
+                id={idx}
+                onClick={() => handleClickCasilla(idx)}
+                className={piezaSelecIdx === idx ? "selected" : ""}
+              >
+                {casilla && <img src={casilla} alt="" />}
               </div>
-            )}
-            <div className="tablero-container">
-              <div className="tablero grid">
-                {tablero.map((casilla, idx) => (
-                  <div
-                    key={idx}
-                    id={idx}
-                    onClick={() => handleClickCasilla(idx)}
-                    className={piezaSelecIdx === idx ? "selected" : ""}
-                  >
-                    {casilla && <img src={casilla} alt="" />}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="piezas-desordanadas-container">
-              <div className="piezas-desordanadas">
-                {imagenes.map((pieza, idx) => (
-                  <img
-                    style={{ order: order[idx] }}
-                    key={pieza}
-                    className={piezaSelec === pieza ? "active" : ""}
-                    src={pieza}
-                    alt=""
-                    onClick={() => handleClickPieza(pieza, idx)}
-                  />
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-      )}
+        <div className="piezas-desordanadas-container">
+          <div className="piezas-desordanadas">
+            {imagenes.map((pieza, idx) => (
+              <img
+                style={{ order: order[idx] }}
+                key={pieza}
+                className={piezaSelec === pieza ? "active" : ""}
+                src={pieza}
+                alt=""
+                onClick={() => handleClickPieza(pieza, idx)}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
-
 export default PuzzlePage;

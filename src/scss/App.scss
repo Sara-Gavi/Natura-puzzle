@@ -2,8 +2,6 @@
 @import 'layout/landing';
 
 
-
-
 .page {
   display: flex;
   gap: 20px;
@@ -31,8 +29,9 @@
     align-items: center; 
     justify-content: center; 
     margin-left: 15px;
-    font-family: "Odor Mean Chey", serif;
+    font-family: "Fredoka", sans-serif;
     font-size: 10px;
+    font-weight: 500;
 }
 
 .tablero {
@@ -110,19 +109,56 @@
   border-radius: 10px;
   text-align: center;
   max-width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .mensaje__h2{
-  font-family: "Comic Neue", cursive;
-  font-weight: bold;
+  font-family: "Fredoka", sans-serif;
+  font-weight:600;
   margin-bottom: 15px;
 }
 
 .mensaje__p { 
-  font-family: "Comic Neue", cursive;
-  font-weight:700;
+  font-family: "Fredoka", sans-serif;
+  font-weight:500;
   line-height: 1.5;
 }
+
+.logo__message{
+  width:100px;
+  border-radius: 50%;
+}
+//mensaje inicio instrucciones
+
+.mensaje__button{
+  background-color: rgb(217, 170, 50);
+  padding: 6px 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-top: 25px;
+  width: 200px;
+}
+
+.mensaje__button:hover{
+  background-color:#1f9b4b;
+}
+
+.button__text{
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight:600;
+  font-family: "Fredoka", sans-serif;
+  letter-spacing: 1.5px;
+}
+
+
+
+
 
 @media (min-width: 768px) { 
 
@@ -188,36 +224,3 @@
 }
 
 }
-
-/*
-.page {
-  display: flex;
-  gap: 20px;
-  flex-direction: column;
-
-  @media (width >= 1200px) {
-    flex-direction: row;
-  }
-}
-
-.tablero.grid {
-  display: grid;
-  grid-template-columns: 200px 200px 200px;
-  grid-template-rows: 200px 200px 200px;
-
-  div {
-    outline: solid 1px black;
-  }
-
-  img {
-    object-fit: contain;
-    width: 200px;
-    height: 200px;
-  }
-}
-
-.piezas-desordanadas {
-  img:active, img.active {
-    outline: solid 1px cyan;
-  }
-}*/

@@ -25,13 +25,12 @@
   }
   
 .content__slogan{
-    font-family: 'Bungee', sans-serif;
+  font-family: "Fredoka", sans-serif;
     text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 40px;
+    font-weight: 900; 
+  font-stretch: expanded; 
     color: #15833c;
-    font-stretch: normal;
-    font-style: normal;
     line-height: 1.31;
     letter-spacing: 2.5px;
     text-transform: uppercase;
@@ -58,9 +57,9 @@
 .button__a{
   text-decoration: none;
   color: white;
-  font-size: 1.5rem;
+  font-size: 20px;
   font-weight:600;
-  font-family: 'Bungee', sans-serif;
+  font-family: "Fredoka", sans-serif;
   letter-spacing: 1.5px;
 }
 
