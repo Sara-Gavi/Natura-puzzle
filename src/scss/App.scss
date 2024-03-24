@@ -51,8 +51,8 @@
 
 .tablero.grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(50px, 1fr));
-  grid-template-rows: repeat(3, minmax(50px, 1fr));
+  grid-template-columns: repeat(3, minmax(60px, 1fr));
+  grid-template-rows: repeat(3, minmax(60px, 1fr));
   gap: 2px;
   margin: 20px auto;
 }
@@ -72,8 +72,9 @@
 
 
 .piezas-desordanadas {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas con igual ancho */
+  gap: 20px; 
   justify-content: center;
   gap: 15px;
   margin: 5px 20px; 
@@ -81,7 +82,7 @@
 
 .piezas-desordanadas img {
   object-fit: contain;
-  height: 40px;
+  height: 60px;
   cursor: pointer;
 }
 
@@ -104,7 +105,7 @@
   background-color: #fff; 
   padding: 20px;
   border-radius: 10px;
-  font-size: 24px;
+  font-size: 15px;
   border: 5px solid #538b3d;
   border-radius: 10px;
   text-align: center;
@@ -128,7 +129,7 @@
 }
 
 .logo__message{
-  width:100px;
+  width:80px;
   border-radius: 50%;
 }
 //mensaje inicio instrucciones
@@ -150,12 +151,11 @@
 .button__text{
   text-decoration: none;
   color: white;
-  font-size: 18px;
+  font-size: 15px;
   font-weight:600;
   font-family: "Fredoka", sans-serif;
   letter-spacing: 1.5px;
 }
-
 
 
 
@@ -181,9 +181,24 @@
     height: 80px;
   }
   
-.piezas-desordanadas {
- gap:20px;}
+  .piezas-desordanadas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Dos columnas con igual ancho */
+    gap: 20px; 
+    justify-content: center;
+    gap: 15px;
+    margin: 5px 20px; 
+  }
 
+ .mensaje__texto{
+ 
+  font-size: 24px;
+}
+
+.logo__message{
+  width:100px;
+  border-radius: 50%;
+}
 
 }
 
@@ -221,6 +236,33 @@
 
    .frase__header{
     font-size: 15px;
+}
+
+.mensaje__texto{
+  background-color: #fff; 
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 24px;
+  border: 5px solid #538b3d;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mensaje__h2{
+  font-family: "Fredoka", sans-serif;
+  font-weight:600;
+  margin-bottom: 15px;
+}
+
+
+.logo__message{
+  width:100px;
+  border-radius: 50%;
 }
 
 }
