@@ -88,20 +88,37 @@
 
 //Mensaje Puzzle completado 
 
-.mensaje{
+/* Animación para el contenedor del mensaje */
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Animación para los elementos dentro del mensaje */
+@keyframes textFadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Estilos para el contenedor del mensaje */
+.mensaje {
+  opacity: 0;
+  background-color: rgba(255, 255, 255, 0.6); /* Fondo claro semitransparente */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.6); // Fondo claro semitransparente 
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999; // Asegura que el mensaje esté por encima de otros elementos 
+  z-index: 999; /* Asegura que el mensaje esté por encima de otros elementos */
+  animation: fadein 2s ease-in 0s forwards;
 }
 
-.mensaje__texto{
+/* Estilos para los elementos dentro del mensaje */
+.mensaje__texto {
+  opacity: 0;
   background-color: #fff; 
   padding: 20px;
   border-radius: 10px;
@@ -114,6 +131,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  animation: textFadein 2s ease-in 0s forwards;
 }
 
 .mensaje__h2{
@@ -129,8 +147,10 @@
 }
 
 .logo__message{
-  width:80px;
+  margin-top: 10px;
+  width:70px;
   border-radius: 50%;
+  border: solid 2px #538b3d;
 }
 //mensaje inicio instrucciones
 
