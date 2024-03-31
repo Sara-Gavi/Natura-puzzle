@@ -107,12 +107,13 @@ function PuzzlePage() {
               ¡Descubre el mundo natural mientras haces un puzzle!
             </h2>
             <p className="mensaje__p">
-              ¡Coloca cada pieza en su sitio y descubrirás un mensaje secreto
-              sobre la naturaleza y por qué es importante cuidarla!
+              ¡Coloca cada pieza en su sitio haciendo clics y descubrirás un
+              mensaje secreto sobre la naturaleza y por qué es importante
+              cuidarla!
             </p>
             <div className="mensaje__button">
               <a className="button__text" onClick={handleStartGame}>
-                ¡A Jugar!
+                ¡Comenzar!
               </a>
             </div>
           </div>
