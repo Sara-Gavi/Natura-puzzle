@@ -164,13 +164,17 @@ function PuzzlePage() {
         <div className="tablero-container">
           <div className="tablero grid">
             {tablero.map((casilla, idx) => (
+              //método map para iterar sobre cada elemento del array tablero.
+              //Por cada elemento (casilla) en el tablero, ejecutamos una función que devuelve un elemento JSX
               <div
-                key={idx}
-                id={idx}
-                onClick={() => handleClickCasilla(idx)}
+                key={idx} //Para darle a cada casilla un identificador único
+                id={idx} //cada casilla tiene un identificador único igual al índice de esa casilla en el array tablero
+                onClick={() => handleClickCasilla(idx)} //manejador de eventos para el clic en la casilla, llama a la función handleClickCasilla
                 className={piezaSelecIdx === idx ? "selected" : ""}
               >
                 {casilla && <img src={casilla} alt="" />}
+                {/* condicional Si casilla tiene un valor(true), el código después del && se ejecuta*/}
+                {/* <img src={casilla} Esto crea un elemento <img>, casilla es la URL de la imagen que se va a mostrar en la casilla del tablero */}
               </div>
             ))}
           </div>
