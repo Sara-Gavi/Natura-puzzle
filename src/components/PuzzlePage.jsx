@@ -13,12 +13,14 @@ import imagen6 from "../images/06.jpg";
 import imagen7 from "../images/07.jpg";
 import imagen8 from "../images/08.jpg";
 
-//const order = [4, 7, 1, 0, 2, 6, 8, 3, 5];
-
+//const order = [4, 7, 1, 0, 2, 6, 8, 3, 5]; Piezas desordenadas manualmente
+//constante para tener el orden inicial de las piezas del puzzle
 const order = [0, 1, 2, 3, 4, 5, 6, 7, 8].sort(() => Math.random() * 2 - 1);
 console.log(order);
 function PuzzlePage() {
-  //Inicializamos los estados necesarios para el tablero, las imágenes de las piezas y las piezas seleccionadas
+  //Definir estados necesarios para el puzzle(tablero, imágenes de las piezas, piezas seleccionadas, mensaje de inicio)
+  //Estado para el tablero
+  //Utilizamos null para representar una casilla vacía del tablero. Cuando una casilla contiene una pieza del puzzle, el estado de esa casilla será la URL de la imagen de la pieza
   const [tablero, setTablero] = useState([
     null,
     null,
@@ -31,6 +33,7 @@ function PuzzlePage() {
     null,
   ]);
 
+  //Estado para las imágenes
   const [imagenes, setImagenes] = useState([
     imagen0,
     imagen3,
@@ -43,12 +46,14 @@ function PuzzlePage() {
     imagen8,
   ]);
 
+  //Estado para la pieza seleccionada.Representa la URL de la imagen de la pieza seleccionada.
   const [piezaSelec, setPiezaSelec] = useState("");
-  const [piezaSelecIdx, setPiezaSelecIdx] = useState(null); // Nuevo estado para almacenar el índice de la pieza seleccionada en el tablero
-  const [mensajeVisible, setMensajeVisible] = useState(true); // Definir estado mensajeVisible
+  //Nuevo estado para almacenar el índice de la pieza seleccionada en el tablero.
+  const [piezaSelecIdx, setPiezaSelecIdx] = useState(null);
+  // Definir estado mensajeVisible
+  const [mensajeVisible, setMensajeVisible] = useState(true);
 
   //Funciones manejadoras de eventos
-
   //Clic de la usuaria en las piezas
   const handleClickPieza = (pieza, idx) => {
     //pieza es la URL de la imágen y idx el índice de esa pieza en el array `imagenes`
@@ -188,4 +193,4 @@ function PuzzlePage() {
     </div>
   );
 }
-export default PuzzlePage;
+export default PuzzlePage; //exportamos el componente para que pueda ser utilizado en otros archivos
