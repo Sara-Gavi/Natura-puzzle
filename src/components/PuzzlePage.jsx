@@ -46,12 +46,12 @@ function PuzzlePage() {
     imagen8,
   ]);
 
-  //Estado para la pieza seleccionada.Representa la URL de la imagen de la pieza seleccionada.
-  const [piezaSelec, setPiezaSelec] = useState("");
+  //Estado para la pieza seleccionada. Representa la URL de la imagen de la pieza seleccionada.
+  const [selectedPiece, setSelectedPiece] = useState("");
   //Nuevo estado para almacenar el índice de la pieza seleccionada en el tablero.
-  const [piezaSelecIdx, setPiezaSelecIdx] = useState(null);
-  // Definir estado mensajeVisible
-  const [mensajeVisible, setMensajeVisible] = useState(true);
+  const [selectedPieceIdx, setSelectedPieceIdx] = useState(null);
+  // Definir estado messageVisible
+  const [messageVisible, setMessageVisible] = useState(true);
 
   //Funciones manejadoras de eventos
   //Clic de la usuaria en las piezas
@@ -59,15 +59,15 @@ function PuzzlePage() {
     //pieza es la URL de la imágen y idx el índice de esa pieza en el array `imagenes`
     if (pieza === board[idx]) {
       // Si la pieza clicada es la que ya está seleccionada en el tablero
-      setPiezaSelec(""); // Deseleccionar la pieza del tablero
+      setSelectedPiece(""); // Deseleccionar la pieza del tablero
       setBoard(board.map((pieza, i) => (i === idx ? null : pieza)));
       //map recorre el array`tablero` y para cada pieza,comprobamos si el índice (i) es igual al índice de la pieza seleccionada (idx).
       //Si es así, casilla tablero es null, sino, dejamos la casilla como está. Esto elimina la pieza del tablero.
-      setPiezaSelecIdx(null); // Restablecemos el estado, ninguna pieza está seleccionada en el tablero
+      setSelectedPieceIdx(null); // Restablecemos el estado, ninguna pieza está seleccionada en el tablero
       //si la pieza en la que se hizo clic (pieza) no es igual a la pieza seleccionada en el tablero (tablero[idx]), entra el else
     } else {
-      setPiezaSelec(pieza); //selecciona la pieza
-      setPiezaSelecIdx(idx); //actualiza el índice de la pieza seleccionada en el tablero
+      setSelectedPiece(pieza); //selecciona la pieza
+      setSelectedPieceIdx(idx); //actualiza el índice de la pieza seleccionada en el tablero
     }
   };
 
@@ -76,21 +76,21 @@ function PuzzlePage() {
     //idx en el índice de la casilla en el tablero en la que se hizo clic
     if (board[idx]) {
       // Si la casilla en la que se hizo clic ya contiene una pieza-seleccionar la pieza del tablero para moverla
-      setPiezaSelec(board[idx]); //establecemos el estado piezaSelec con la pieza que está en la casilla del tablero en la que se hizo clic
+      setSelectedPiece(board[idx]); //establecemos el estado selectedPiece con la pieza que está en la casilla del tablero en la que se hizo clic
       setBoard(board.map((pieza, i) => (i === idx ? null : pieza)));
       //map recorre el array tablero y para cada pieza,
       //comprobamos si el indice(i) es igual al índice de la casilla en la que se hizo clic (idx).
       //Si es así, establecemos la casilla en null (vacía), sino, dejamos la casilla como está.
       //Esto vacía la casilla del tablero en la que se hizo clic.
-      setPiezaSelecIdx(idx); // Actualizar el índice de la pieza seleccionada en el tablero
+      setSelectedPieceIdx(idx); // Actualizar el índice de la pieza seleccionada en el tablero
 
       //Si la casilla del tablrero en la que se hizo clic está vacía:tablero[idx] es null, entra el else
     } else {
       const newBoard = [...board]; //copia independiente de tablero
-      newBoard[idx] = piezaSelec; //colocar la pieza seleccionada en la casilla vacía del tablero
+      newBoard[idx] = selectedPiece; //colocar la pieza seleccionada en la casilla vacía del tablero
       setBoard(newBoard); //reiniciar la selección de la pieza
-      setPiezaSelec(""); //restablecer el índice de la pieza seleccionada en el tablero
-      setPiezaSelecIdx(null); // Restablecer el índice de la pieza seleccionada en el tablero
+      setSelectedPiece(""); //restablecer el índice de la pieza seleccionada en el tablero
+      setSelectedPieceIdx(null); // Restablecer el índice de la pieza seleccionada en el tablero
     }
   };
 
@@ -99,13 +99,13 @@ function PuzzlePage() {
   };
 
   const handleStartGame = () => {
-    setMensajeVisible(false);
+    setMessageVisible(false);
   };
 
   //Renderizamos el componente con su estructura HTML y elementos necesarios para el Puzzle
   return (
     <div className="puzzle__page">
-      {mensajeVisible && (
+      {messageVisible && (
         <div className="mensaje">
           <div className="mensaje__texto">
             <h2 className="mensaje__h2">
@@ -170,7 +170,7 @@ function PuzzlePage() {
                 key={idx} //Para darle a cada casilla un identificador único
                 id={idx} //cada casilla tiene un identificador único igual al índice de esa casilla en el array tablero
                 onClick={() => handleClickCasilla(idx)} //manejador de eventos para el clic en la casilla, llama a la función handleClickCasilla
-                className={piezaSelecIdx === idx ? "selected" : ""}
+                className={selectedPieceIdx === idx ? "selected" : ""}
               >
                 {casilla && <img src={casilla} alt="" />}
                 {/* condicional Si casilla tiene un valor(true), el código después del && se ejecuta*/}
@@ -185,7 +185,7 @@ function PuzzlePage() {
               <img
                 style={{ order: order[idx] }}
                 key={pieza}
-                className={piezaSelec === pieza ? "active" : ""}
+                className={selectedPiece === pieza ? "active" : ""}
                 src={pieza}
                 alt=""
                 onClick={() => handleClickPieza(pieza, idx)}
