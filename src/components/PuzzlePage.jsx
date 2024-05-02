@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import NaturaLogo from "../images/NATURA.png";
-//Imagenes para las piezas del Puzzle
+//imagenes para las piezas del Puzzle
 import imagen0 from "../images/00.jpg";
 import imagen1 from "../images/01.jpg";
 import imagen2 from "../images/02.jpg";
@@ -21,7 +21,7 @@ function PuzzlePage() {
   //Definir estados necesarios para el puzzle(tablero, imágenes de las piezas, piezas seleccionadas, mensaje de inicio)
   //Estado para el tablero
   //Utilizamos null para representar una casilla vacía del tablero. Cuando una casilla contiene una pieza del puzzle, el estado de esa casilla será la URL de la imagen de la pieza
-  const [tablero, setTablero] = useState([
+  const [board, setBoard] = useState([
     null,
     null,
     null,
@@ -34,7 +34,7 @@ function PuzzlePage() {
   ]);
 
   //Estado para las imágenes
-  const [imagenes, setImagenes] = useState([
+  const [images, setImages] = useState([
     imagen0,
     imagen3,
     imagen6,
@@ -57,10 +57,10 @@ function PuzzlePage() {
   //Clic de la usuaria en las piezas
   const handleClickPieza = (pieza, idx) => {
     //pieza es la URL de la imágen y idx el índice de esa pieza en el array `imagenes`
-    if (pieza === tablero[idx]) {
+    if (pieza === board[idx]) {
       // Si la pieza clicada es la que ya está seleccionada en el tablero
       setPiezaSelec(""); // Deseleccionar la pieza del tablero
-      setTablero(tablero.map((pieza, i) => (i === idx ? null : pieza)));
+      setBoard(board.map((pieza, i) => (i === idx ? null : pieza)));
       //map recorre el array`tablero` y para cada pieza,comprobamos si el índice (i) es igual al índice de la pieza seleccionada (idx).
       //Si es así, casilla tablero es null, sino, dejamos la casilla como está. Esto elimina la pieza del tablero.
       setPiezaSelecIdx(null); // Restablecemos el estado, ninguna pieza está seleccionada en el tablero
@@ -74,10 +74,10 @@ function PuzzlePage() {
   //Clic de la usuaria en las casillas del tablero
   const handleClickCasilla = (idx) => {
     //idx en el índice de la casilla en el tablero en la que se hizo clic
-    if (tablero[idx]) {
+    if (board[idx]) {
       // Si la casilla en la que se hizo clic ya contiene una pieza-seleccionar la pieza del tablero para moverla
-      setPiezaSelec(tablero[idx]); //establecemos el estado piezaSelec con la pieza que está en la casilla del tablero en la que se hizo clic
-      setTablero(tablero.map((pieza, i) => (i === idx ? null : pieza)));
+      setPiezaSelec(board[idx]); //establecemos el estado piezaSelec con la pieza que está en la casilla del tablero en la que se hizo clic
+      setBoard(board.map((pieza, i) => (i === idx ? null : pieza)));
       //map recorre el array tablero y para cada pieza,
       //comprobamos si el indice(i) es igual al índice de la casilla en la que se hizo clic (idx).
       //Si es así, establecemos la casilla en null (vacía), sino, dejamos la casilla como está.
@@ -86,16 +86,16 @@ function PuzzlePage() {
 
       //Si la casilla del tablrero en la que se hizo clic está vacía:tablero[idx] es null, entra el else
     } else {
-      const newTablero = [...tablero]; //copia independiente de tablero
-      newTablero[idx] = piezaSelec; //colocar la pieza seleccionada en la casilla vacía del tablero
-      setTablero(newTablero); //reiniciar la selección de la pieza
+      const newBoard = [...board]; //copia independiente de tablero
+      newBoard[idx] = piezaSelec; //colocar la pieza seleccionada en la casilla vacía del tablero
+      setBoard(newBoard); //reiniciar la selección de la pieza
       setPiezaSelec(""); //restablecer el índice de la pieza seleccionada en el tablero
       setPiezaSelecIdx(null); // Restablecer el índice de la pieza seleccionada en el tablero
     }
   };
 
   const checkCompleted = () => {
-    return JSON.stringify(tablero) === JSON.stringify(imagenes);
+    return JSON.stringify(board) === JSON.stringify(images);
   };
 
   const handleStartGame = () => {
@@ -161,9 +161,9 @@ function PuzzlePage() {
             </div>
           </div>
         )}
-        <div className="tablero-container">
-          <div className="tablero grid">
-            {tablero.map((casilla, idx) => (
+        <div className="board-container">
+          <div className="board grid">
+            {board.map((casilla, idx) => (
               //método map para iterar sobre cada elemento del array tablero.
               //Por cada elemento (casilla) en el tablero, ejecutamos una función que devuelve un elemento JSX
               <div
@@ -181,7 +181,7 @@ function PuzzlePage() {
         </div>
         <div className="piezas-desordanadas-container">
           <div className="piezas-desordanadas">
-            {imagenes.map((pieza, idx) => (
+            {images.map((pieza, idx) => (
               <img
                 style={{ order: order[idx] }}
                 key={pieza}
