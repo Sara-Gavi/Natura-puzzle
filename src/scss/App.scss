@@ -10,20 +10,19 @@
   height: 100vh;
 }
 
-.header {
+.header__container {
   background-color: #20aa43; 
   height: 30%; 
   display: flex;
   padding-left: 30px; 
 }
 
-.logo__header{
+.header__logo{
   width: 40px;
   border-radius: 50%;
 }
 
-.frase__header{
-
+.header__slogan{
     color:white;
     display: flex;
     align-items: center; 
@@ -101,9 +100,9 @@
 }
 
 /* Estilos para el contenedor del mensaje */
-.mensaje {
+.message {
   opacity: 0;
-  background-color: rgba(255, 255, 255, 0.6); /* Fondo claro semitransparente */
+  background-color: rgba(255, 255, 255, 0.6); 
   position: fixed;
   top: 0;
   left: 0;
@@ -112,12 +111,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999; /* Asegura que el mensaje esté por encima de otros elementos */
+  z-index: 999; 
   animation: fadein 2s ease-in 0s forwards;
 }
 
-/* Estilos para los elementos dentro del mensaje */
-.mensaje__texto {
+.message__text {
   opacity: 0;
   background-color: #fff; 
   padding: 20px;
@@ -134,13 +132,13 @@
   animation: textFadein 2s ease-in 0s forwards;
 }
 
-.mensaje__h2{
+.message__h2{
   font-family: "Fredoka", sans-serif;
   font-weight:600;
   margin-bottom: 15px;
 }
 
-.mensaje__p { 
+.message__p { 
   font-family: "Fredoka", sans-serif;
   font-weight:500;
   line-height: 1.5;
@@ -154,7 +152,7 @@
 }
 //mensaje inicio instrucciones
 
-.mensaje__button{
+.message__button{
   background-color: rgb(217, 170, 50);
   padding: 6px 15px;
   border-radius: 8px;
@@ -164,7 +162,7 @@
   width: 200px;
 }
 
-.mensaje__button:hover{
+.message__button:hover{
   background-color:#1f9b4b;
 }
 
@@ -182,11 +180,11 @@
 
 @media (min-width: 768px) { 
 
-  .logo__header{
+  .header__logo{
     width: 65px;
   }
   
-  .frase__header{
+  .header__slogan{
   font-size: 15px;
 }
   .board.grid {
@@ -210,7 +208,7 @@
     margin: 5px 20px; 
   }
 
- .mensaje__texto{
+ .message__text{
  
   font-size: 24px;
 }
@@ -225,7 +223,7 @@
 @media (min-width: 1024px) {
 
 
-  .logo__header{
+  .header__logo{
     width: 60px;
   }
   .page {
@@ -254,11 +252,11 @@
     margin: 0 auto;
    }
 
-   .frase__header{
+   .header__slogan{
     font-size: 15px;
 }
 
-.mensaje__texto{
+.message__text{
   background-color: #fff; 
   padding: 20px;
   border-radius: 10px;
@@ -273,7 +271,7 @@
   align-items: center;
 }
 
-.mensaje__h2{
+.message__h2{
   font-family: "Fredoka", sans-serif;
   font-weight:600;
   margin-bottom: 15px;

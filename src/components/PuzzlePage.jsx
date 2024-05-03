@@ -106,17 +106,17 @@ function PuzzlePage() {
   return (
     <div className="puzzle__page">
       {messageVisible && (
-        <div className="mensaje">
-          <div className="mensaje__texto">
-            <h2 className="mensaje__h2">
+        <div className="message">
+          <div className="message__text">
+            <h2 className="message__h2">
               ¡Descubre el mundo natural mientras haces un puzzle!
             </h2>
-            <p className="mensaje__p">
+            <p className="message__p">
               ¡Coloca cada pieza en su sitio haciendo clics y descubrirás un
               mensaje secreto sobre la naturaleza y por qué es importante
               cuidarla!
             </p>
-            <div className="mensaje__button">
+            <div className="message__button">
               <a className="button__text" onClick={handleStartGame}>
                 ¡Comenzar!
               </a>
@@ -124,24 +124,24 @@ function PuzzlePage() {
           </div>
         </div>
       )}
-      <header className="header">
-        <div className="logo__header">
+      <header className="header__container">
+        <div className="header__logo">
           <Link to="/">
-            <img className="logo__header" src={NaturaLogo} alt="NaturaLogo" />
+            <img className="header__logo" src={NaturaLogo} alt="NaturaLogo" />
           </Link>
         </div>
-        <div className="frase__header">
+        <div className="header__slogan">
           <p>Construye un mundo sostenible pieza a pieza</p>
         </div>
       </header>
       <div className="page">
         {checkCompleted() && (
-          <div className="mensaje">
-            <div className="mensaje__texto">
-              <h2 className="mensaje__h2">
+          <div className="message">
+            <div className="message__text">
+              <h2 className="message__h2">
                 ¿Sabías por qué cambian los colores de los árboles?
               </h2>
-              <p className="mensaje__p">
+              <p className="message__p">
                 Durante el verano, las hojas están llenas de un pigmento verde
                 llamado clorofila que les da su color verde. Pero cuando llega
                 el otoño y empieza a hacer más frío, las hojas comienzan a
