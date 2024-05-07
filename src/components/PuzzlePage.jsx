@@ -55,9 +55,9 @@ function PuzzlePage() {
 
   //Funciones manejadoras de eventos
   //Clic de la usuaria en las piezas
-  const handleClickPieza = (pieza, idx) => {
+  const handleClickPiece = (piece, idx) => {
     //pieza es la URL de la imágen y idx el índice de esa pieza en el array `imagenes`
-    if (pieza === board[idx]) {
+    if (piece === board[idx]) {
       // Si la pieza clicada es la que ya está seleccionada en el tablero
       setSelectedPiece(""); // Deseleccionar la pieza del tablero
       setBoard(board.map((pieza, i) => (i === idx ? null : pieza)));
@@ -66,18 +66,18 @@ function PuzzlePage() {
       setSelectedPieceIdx(null); // Restablecemos el estado, ninguna pieza está seleccionada en el tablero
       //si la pieza en la que se hizo clic (pieza) no es igual a la pieza seleccionada en el tablero (tablero[idx]), entra el else
     } else {
-      setSelectedPiece(pieza); //selecciona la pieza
+      setSelectedPiece(piece); //selecciona la pieza
       setSelectedPieceIdx(idx); //actualiza el índice de la pieza seleccionada en el tablero
     }
   };
 
   //Clic de la usuaria en las casillas del tablero
-  const handleClickCasilla = (idx) => {
+  const handleClickCell = (idx) => {
     //idx en el índice de la casilla en el tablero en la que se hizo clic
     if (board[idx]) {
       // Si la casilla en la que se hizo clic ya contiene una pieza-seleccionar la pieza del tablero para moverla
       setSelectedPiece(board[idx]); //establecemos el estado selectedPiece con la pieza que está en la casilla del tablero en la que se hizo clic
-      setBoard(board.map((pieza, i) => (i === idx ? null : pieza)));
+      setBoard(board.map((piece, i) => (i === idx ? null : piece)));
       //map recorre el array tablero y para cada pieza,
       //comprobamos si el indice(i) es igual al índice de la casilla en la que se hizo clic (idx).
       //Si es así, establecemos la casilla en null (vacía), sino, dejamos la casilla como está.
@@ -161,34 +161,34 @@ function PuzzlePage() {
             </div>
           </div>
         )}
-        <div className="board-container">
-          <div className="board grid">
-            {board.map((casilla, idx) => (
+        <div className="board__container">
+          <div className="board__grid">
+            {board.map((cell, idx) => (
               //método map para iterar sobre cada elemento del array tablero.
               //Por cada elemento (casilla) en el tablero, ejecutamos una función que devuelve un elemento JSX
               <div
                 key={idx} //Para darle a cada casilla un identificador único
                 id={idx} //cada casilla tiene un identificador único igual al índice de esa casilla en el array tablero
-                onClick={() => handleClickCasilla(idx)} //manejador de eventos para el clic en la casilla, llama a la función handleClickCasilla
-                className={selectedPieceIdx === idx ? "selected" : ""}
+                onClick={() => handleClickCell(idx)} //manejador de eventos para el clic en la casilla, llama a la función handleClickCasilla
+                className="board__div"
               >
-                {casilla && <img src={casilla} alt="" />}
+                {cell && <img className="board__image" src={cell} alt="" />}
                 {/* condicional Si casilla tiene un valor(true), el código después del && se ejecuta*/}
                 {/* <img src={casilla} Esto crea un elemento <img>, casilla es la URL de la imagen que se va a mostrar en la casilla del tablero */}
               </div>
             ))}
           </div>
         </div>
-        <div className="piezas-desordanadas-container">
-          <div className="piezas-desordanadas">
-            {images.map((pieza, idx) => (
+        <div className="pieces__container">
+          <div className="pieces__div">
+            {images.map((piece, idx) => (
               <img
                 style={{ order: order[idx] }}
-                key={pieza}
-                className={selectedPiece === pieza ? "active" : ""}
-                src={pieza}
+                key={piece}
+                className="pieces__image"
+                src={piece}
                 alt=""
-                onClick={() => handleClickPieza(pieza, idx)}
+                onClick={() => handleClickPiece(piece, idx)}
               />
             ))}
           </div>
