@@ -12,6 +12,9 @@ import imagen5 from "../images/05.jpg";
 import imagen6 from "../images/06.jpg";
 import imagen7 from "../images/07.jpg";
 import imagen8 from "../images/08.jpg";
+//Importamos componentes
+import Message from "./Message";
+import Header from "./Header";
 
 //const order = [4, 7, 1, 0, 2, 6, 8, 3, 5]; Piezas desordenadas manualmente
 //constante para tener el orden inicial de las piezas del puzzle
@@ -105,35 +108,8 @@ function PuzzlePage() {
   //Renderizamos el componente con su estructura HTML y elementos necesarios para el Puzzle
   return (
     <div className="puzzle__page">
-      {messageVisible && (
-        <div className="message">
-          <div className="message__text">
-            <h2 className="message__h2">
-              ¡Descubre el mundo natural mientras haces un puzzle!
-            </h2>
-            <p className="message__p">
-              ¡Coloca cada pieza en su sitio haciendo clics y descubrirás un
-              mensaje secreto sobre la naturaleza y por qué es importante
-              cuidarla!
-            </p>
-            <div className="message__button">
-              <a className="button__text" onClick={handleStartGame}>
-                ¡Comenzar!
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
-      <header className="header__container">
-        <div className="header__logo">
-          <Link to="/">
-            <img className="header__logo" src={NaturaLogo} alt="NaturaLogo" />
-          </Link>
-        </div>
-        <div className="header__slogan">
-          <p>Construye un mundo sostenible pieza a pieza</p>
-        </div>
-      </header>
+      {messageVisible && <Message handleStartGame={handleStartGame} />}
+      <Header />
       <div className="page">
         {checkCompleted() && (
           <div className="message">
