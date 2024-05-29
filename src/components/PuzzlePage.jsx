@@ -35,7 +35,7 @@ function PuzzlePage() {
     null,
   ]);
 
-  //Estado para las imágenes
+  //Estado para todas las imágenes de las piezas
   const [images, setImages] = useState([
     imagen0,
     imagen3,
@@ -52,7 +52,7 @@ function PuzzlePage() {
   const [selectedPiece, setSelectedPiece] = useState("");
   //Nuevo estado para almacenar el índice de la pieza seleccionada en el tablero.
   const [selectedPieceIdx, setSelectedPieceIdx] = useState(null);
-  // Definir estado messageVisible
+  // Estado para el mensaje de inicio
   const [messageVisible, setMessageVisible] = useState(true);
 
   //Funciones manejadoras de eventos
@@ -73,7 +73,7 @@ function PuzzlePage() {
     }
   };
 
-  //Clic de la usuaria en las casillas del tablero
+  //Función para manejar Clic de la usuaria en las casillas del tablero
   const handleClickCell = (idx) => {
     //idx en el índice de la casilla en el tablero en la que se hizo clic
     if (board[idx]) {
