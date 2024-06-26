@@ -14,6 +14,7 @@ import imagen8 from "../images/08.jpg";
 import Message from "./Message";
 import Header from "./Header";
 import FinalMessage from "./FinalMessage";
+import Footer from "./Footer";
 
 //const order = [4, 7, 1, 0, 2, 6, 8, 3, 5]; Piezas desordenadas manualmente
 //constante para tener el orden inicial de las piezas del puzzle
@@ -144,6 +145,7 @@ function PuzzlePage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
