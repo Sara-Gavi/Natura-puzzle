@@ -1,19 +1,21 @@
 import creativeCode from "../images/CREATIVE.png";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
     <footer className="footer">
       <div className="footer__content">
         <img className="footer__logo" src={creativeCode} alt="Creative Code" />
-        <p>
+        <p className="footer__p">
           &copy; {new Date().getFullYear()} -{" "}
-          <a
-            href="https://www.linkedin.com/in/saragavilan/"
+          <Link
+            to="https://www.linkedin.com/in/saragavilan/"
             target="_blank"
             rel="noopener noreferrer" // proteger la privacidad y seguridad
+            className="footer__a"
           >
             Developer Sara Gavilán
-          </a>
+          </Link>
         </p>
       </div>
     </footer>
